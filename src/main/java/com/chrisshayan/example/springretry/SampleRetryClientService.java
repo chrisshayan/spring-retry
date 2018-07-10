@@ -10,7 +10,7 @@ public class SampleRetryClientService {
     private SampleRetryService sampleRetryService;
 
 
-    public void callRetryService() throws TypeOneException, TypeTwoException {
-        sampleRetryService.retryWhenException();
+    public String callRetryService() throws TypeOneException, TypeTwoException {
+        return sampleRetryService.retryWhenException();
     }
 }

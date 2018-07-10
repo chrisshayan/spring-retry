@@ -16,7 +16,7 @@ public class SampleRetryService {
     @Retryable(
             value = {TypeOneException.class, TypeTwoException.class},
             maxAttempts = 4, backoff = @Backoff(2000))
-    public void retryWhenException() throws TypeOneException, TypeTwoException {
+    public String retryWhenException() throws TypeOneException, TypeTwoException {
         COUNTER++;
         LOGGER.info("COUNTER = " + COUNTER);
 
@@ -29,7 +29,8 @@ public class SampleRetryService {
     }
 
     @Recover
-    public void recover() {
+    public String recover(Throwable t) {
         LOGGER.info("SampleRetryService.recover");
+        return "Error Class :: " + t.getClass().getName();
     }
 }
